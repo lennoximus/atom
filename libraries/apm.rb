@@ -30,7 +30,7 @@ class Chef
         @provider = Chef::Provider::AtomApm
         # Set default action and allowed actions
         @action = :install
-        @allowed_actions = [:install, :uninstall, :upgrade, :enable, :disable]
+        @allowed_actions = %i[install uninstall upgrade enable disable]
         @name = name
       end
 
@@ -40,7 +40,7 @@ class Chef
 
       def installed?
         packages = shell_out('apm list --installed --bare').stdout.split("\n")
-        packages.any? { |x| x.index("#{@name}@") == 0 }
+        packages.any? { |x| x.index("#{@name}@").zero? }
       end
     end
   end

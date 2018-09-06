@@ -2,7 +2,7 @@ sudo: false
 addons:
   apt:
     sources:
-      - chef-current-precise
+      - chef-current-trusty
     packages:
       - chefdk
 
